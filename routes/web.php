@@ -22,7 +22,9 @@ Route::controller(SeriesController::class)->group(function(){
     Route::get('/series','index')->name('series.index');
     Route::get('/series/create','create')->name('series.create');
     Route::post('/series/store','store')->name('series.store');
-    Route::post('/series/destroy/{id}','destroy')->name('series.destroy')->whereNumber('id');
+    Route::post('/series/destroy/{serie}','destroy')->name('series.destroy')->whereNumber('id');
+    Route::get('/series/edit/{serie}','edit')->name('series.edit')->whereNumber('id');
+    Route::post('/series/update/{serie}','update')->name('series.update');
 });
 
 
