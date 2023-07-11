@@ -1,4 +1,9 @@
 <x-layout title="Episódios da {{ $season->number }}° temporada de {{ $series->nome }}">
+    @isset($successMessage)
+        <div class="alert alert-success">
+            {{$successMessage}}
+        </div>
+    @endisset
     <form action="" method="POST">
         @csrf
         <ul class="list-group">

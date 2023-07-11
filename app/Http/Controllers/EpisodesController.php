@@ -11,7 +11,8 @@ class EpisodesController extends Controller
 {
     public function index(Series $series, Season $season)
     {
-        return view('episodes.index')->with('series',$series)->with('season',$season)->with('episodes',$season->episodes);
+        $successMessage = session('mensagem.sucesso');
+        return view('episodes.index')->with('series',$series)->with('season',$season)->with('episodes',$season->episodes)->with('successMessage',$successMessage);
     }
 
     public function update(Request $request, Series $series, Season $season)
@@ -23,6 +24,6 @@ class EpisodesController extends Controller
 
         $season->push();
 
-        return to_route('episodes.index',[$series->id,$season->id]);
+        return to_route('episodes.index',[$series->id,$season->id])->with('mensagem.sucesso','Assistidos marcados com sucesso');
     }
 }
