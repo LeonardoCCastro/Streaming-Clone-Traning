@@ -171,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\SeriesRepositoryProvider::class,
+        App\Providers\EpisodesRepositoryProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
     ])->toArray(),
