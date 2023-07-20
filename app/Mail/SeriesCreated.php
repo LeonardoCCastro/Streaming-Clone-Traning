@@ -23,19 +23,10 @@ class SeriesCreated extends Mailable
         public int $episodiosPorTemporada,
     )
     {
-        
+        $this->subject = "$nomeSerie adicionada ao catalogo";
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Series Created',
-        );
-    }
-
+   
     /**
      * Get the message content definition.
      */

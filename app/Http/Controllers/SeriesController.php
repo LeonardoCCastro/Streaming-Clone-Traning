@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SeriesCreated as EventsSeriesCreated;
 use App\Http\Middleware\Autenticador;
 use App\Http\Requests\SeriesFormRequest;
+use App\Mail\SeriesCreated;
 use App\Models\Series;
+use App\Models\User;
 use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SeriesController extends Controller
 {
@@ -36,7 +40,7 @@ class SeriesController extends Controller
         // $serie->save();
 
         $serie = $this->repository->add($request);
-
+        \app\Events\SeriesCreated::dispatch($serie->nome,$serie->id,$request->seasonsQty,$request->episodesPerSeason);
         $request->session()->put('success.message', "Série {$serie->nome} criada com sucesso");
         return to_route('series.index');
     }
