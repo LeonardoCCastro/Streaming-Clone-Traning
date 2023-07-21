@@ -38,9 +38,10 @@ class SeriesController extends Controller
         // $serie = new Serie();
         // $serie->nome = $nomeSerie;
         // $serie->save();
-
+        $coverPath = $request->file('cover')->store('series_cover', 'public');
+        $request->coverPath = $coverPath;
         $serie = $this->repository->add($request);
-        \app\Events\SeriesCreated::dispatch($serie->nome,$serie->id,$request->seasonsQty,$request->episodesPerSeason);
+        EventsSeriesCreated::dispatch($serie->nome,$serie->id,$request->seasonsQty,$request->episodesPerSeason);
         $request->session()->put('success.message', "Série {$serie->nome} criada com sucesso");
         return to_route('series.index');
     }
