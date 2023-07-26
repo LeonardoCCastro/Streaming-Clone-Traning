@@ -38,7 +38,7 @@ class SeriesController extends Controller
         // $serie = new Serie();
         // $serie->nome = $nomeSerie;
         // $serie->save();
-        $coverPath = $request->file('cover')->store('series_cover', 'public');
+        $coverPath = $request->hasFile('cover')? $request->file('cover')->store('series_cover', 'public'): null;
         $request->coverPath = $coverPath;
         $serie = $this->repository->add($request);
         EventsSeriesCreated::dispatch($serie->nome,$serie->id,$request->seasonsQty,$request->episodesPerSeason);

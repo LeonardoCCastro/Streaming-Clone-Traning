@@ -47,7 +47,7 @@ Route::get('/logout',[LoginController::class,'destroy'])->name('logout');
 Route::get('/register',[UsersController::class,'create'])->name('users.register');
 Route::post('/register',[UsersController::class,'store'])->name('users.store');
 
-
+// rota para vizualizar o visual do email
 Route::get('/mail', function(){
     return new SeriesCreated('Série de teste',1,5,10,);
 });
